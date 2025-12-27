@@ -1,0 +1,96 @@
+@use '../../../Styles/Colors.scss' as Color;
+@use '../../../Styles/Formats.scss' as Format;
+@use '../../../Styles/Fonts.scss' as Font;
+
+.Header_Index{
+  position: fixed;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 1600px;
+  height: 50px;
+  background-color: Color.$tertiary_color_dark;
+  border-radius: Format.$border_radius;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 55;
+
+  .Left_Side{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    .Logo{
+      width: auto;
+      height: 100%;
+    }
+
+    .Company_Name{
+      height: 100%;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      justify-content: center;
+
+      span{
+        font-family: Font.$font_family_roboto;
+        font-weight: 600;
+        font-size: 20px;
+      }
+
+      span:nth-child(1){
+        color: Color.$gray;
+      }
+
+      span:nth-child(2){
+        color: Color.$blue;
+      }
+    }
+  }
+
+  .Right_Side {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  
+    a {
+      width: 70px;
+      height: 25px;
+      padding: 5px;
+      box-sizing: border-box;
+      border-radius: Format.$border_radius;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      span {
+        font-family: Font.$font_family_roboto;
+        font-weight: 600;
+        font-size: 13px;
+      }
+  
+      &:nth-child(1) {
+        background-color: Color.$primary_color_dark;
+        
+        span {
+          color: Color.$primary_color_light;
+        }
+      }
+  
+      &:nth-child(2) {
+        background-color: Color.$primary_color_light;
+        
+        span {
+          color: Color.$primary_color_dark;
+        }
+      }
+    }
+  }
+}
