@@ -1,0 +1,91 @@
+@use '../../../Styles/Colors.scss' as Color;
+@use '../../../Styles/Fonts.scss' as Font;
+@use '../../../Styles/Formats.scss' as Format;
+
+.Simple_Input_And_Lable{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-around;
+  
+  label{
+    width: 100%;
+    height: 20px;
+    font-family: Font.$font_family_roboto;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  input{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-radius: Format.$border_radius;
+    font-family: Font.$font_family_poppins;
+    box-sizing: border-box;
+    text-align: center;
+
+    &::placeholder{
+      color: Color.$gray;
+    }
+
+    &:focus{
+      background: none;
+    }
+  }
+
+  .Icon {
+    position: absolute;
+    width: 7%;
+    height: 90%;
+    right: 0%;
+    top: 68%;
+    transform: translate(-30%, -50%);
+    cursor: pointer;
+  }
+}
+  
+.Dark_Mode{
+
+  .Simple_Input_And_Lable{
+    
+    label{
+      color: Color.$gray;
+    }
+
+    input{
+      background-color: Color.$primary_color_dark;
+      border: 1px solid Color.$gray;
+      color: Color.$gray;
+
+      &:focus{
+        border: 1px solid Color.$blue;
+      }
+    }
+  }
+}
+
+.Light_Mode{
+
+  .Simple_Input_And_Lable{
+    
+    label{
+      color: Color.$black;
+    }
+
+    input{
+      background-color: Color.$primary_color_light;
+      border: 1px solid Color.$black;
+      color: Color.$black;
+
+      &:focus{
+        border: 1px solid Color.$blue;
+      }
+    }
+  }
+}

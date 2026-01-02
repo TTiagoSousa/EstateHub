@@ -13,7 +13,7 @@ const Header_Index = () => {
       </div>
       <div className="Center"></div>
       <div className="Right_Side">
-        <Link to={''}>
+        <Link to="Auth">
           <span>Login</span>
         </Link>
         <Link to={''}>

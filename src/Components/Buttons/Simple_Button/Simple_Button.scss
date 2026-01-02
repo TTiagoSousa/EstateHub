@@ -1,0 +1,60 @@
+@use '../../../Styles/Colors.scss' as Color;
+@use '../../../Styles/Fonts.scss' as Font;
+@use '../../../Styles/Formats.scss' as Format;
+
+
+.Simple_Button{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-radius: Format.$border_radius;
+
+  button{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: Format.$border_radius;
+    border: none;
+    font-family: Font.$font_family_poppins;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+
+}
+
+.Dark_Mode{
+
+  .Simple_Button{
+
+    button {
+      background-color: Color.$blue;
+      color: Color.$white;
+
+      &:disabled {
+        background-color: Color.$blue;
+        cursor: not-allowed; 
+        opacity: 0.6; 
+      }
+    }
+  }
+}
+
+.Light_Mode{
+
+  .Simple_Button{
+
+    button {
+      background-color: Color.$blue;
+      color: Color.$white;
+
+      &:disabled {
+        background-color: Color.$blue;
+        cursor: not-allowed; 
+        opacity: 0.6; 
+      }
+    }
+  }
+}

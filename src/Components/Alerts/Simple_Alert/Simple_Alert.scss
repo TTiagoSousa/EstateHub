@@ -1,0 +1,108 @@
+@use '../../../Styles/Colors.scss' as Color;
+@use '../../../Styles/Fonts.scss' as Font;
+@use '../../../Styles/Formats.scss' as Format;
+
+.Simple_Alert{
+  position: fixed;
+  z-index: 555;
+  
+  .p-toast{
+  
+    div{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+      .p-toast-message-error{
+        border-radius: Format.$border_radius;
+      }
+  
+      .p-toast-message-success{
+        background-color: rgb(84, 202, 84);
+        border-radius: Format.$border_radius;
+      }
+  
+      .p-toast-message{
+  
+        .p-toast-message-content{
+          display: flex !important;
+          flex-direction: row !important;
+          align-items: center !important;
+          padding: 5px;
+          box-sizing: border-box;
+  
+          .p-toast-message-text{
+            font-family: Font.$font_family_poppins;
+            font-weight: 600;
+            font-size: 15px;
+            gap: 0px !important;
+  
+            .p-toast-summary{
+              
+            }
+  
+            .p-toast-detail{
+  
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.Dark_Mode{
+
+  .Simple_Alert{
+    
+    .p-toast{
+
+      div{
+  
+        .p-toast-message-error{
+          background-color: Color.$red_light;
+          border-radius: Format.$border_radius;
+          color: Color.$red;
+        }
+  
+        .p-toast-message{
+         
+          .p-toast-message-content{
+  
+            .p-toast-message-text{
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.Light_Mode{
+
+  .Simple_Alert{
+
+    .p-toast{
+
+      div{
+  
+        .p-toast-message-error{
+          background-color: Color.$red_light;
+          border-radius: Format.$border_radius;
+          color: Color.$red;
+        }
+  
+        .p-toast-message{
+         
+          .p-toast-message-content{
+  
+            .p-toast-message-text{
+
+            }
+          }
+        }
+      }
+    }
+  }
+}

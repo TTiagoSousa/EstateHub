@@ -1,0 +1,492 @@
+@use '../../../Styles/Colors.scss' as Color;
+@use '../../../Styles/Fonts.scss' as Font;
+@use '../../../Styles/Formats.scss' as Format;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+.Auth {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  min-height: 100vh;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    height: 2000px;
+    width: 2000px;
+    top: -10%;
+    right: 48%;
+    transform: translateY(-50%);
+    background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
+    transition: 1.8s ease-in-out;
+    border-radius: 50%;
+    z-index: 6;
+  }
+
+  .Forms_Container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .Signin_Signup {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 75%;
+    width: 50%;
+    transition: 1s 0.7s ease-in-out;
+    display: grid;
+    grid-template-columns: 1fr;
+    z-index: 5;
+
+    form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0rem 2rem;
+      transition: all 0.2s 0.7s;
+      overflow: hidden;
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+
+      &.Sign_Up_Form {
+        opacity: 0;
+        z-index: 1;
+      }
+
+      &.Sign_In_Form {
+        z-index: 2;
+      }
+    }
+  }
+
+  .Title {
+    font-size: 2.2rem;
+    color: #444;
+    margin-bottom: 10px;
+    font-family: Font.$font_family_roboto;
+    font-weight: 600;
+  }
+
+  .Input_Field {
+    max-width: 380px;
+    width: 100%;
+    margin: 10px 0;
+    height: 55px;
+    display: flex;
+    position: relative;
+  }
+
+  .Recover_Password{
+    max-width: 380px;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: left;
+    height: auto; 
+
+    span{
+      font-family: Font.$font_family_roboto;
+      font-weight: 500;
+      color: Color.$gray;
+      cursor: pointer;
+
+      &:hover{
+        color: Color.$blue
+      }
+    }
+  }
+
+  .Check_Field {
+    max-width: 380px;
+    width: 100%;
+    margin: 10px 0;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    div:nth-of-type(1) {
+      width: auto;
+      display: flex;
+      gap: 10px;
+
+      span {
+        font-family: Font.$font_family_roboto;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
+
+    div:nth-of-type(2) {
+      span {
+        font-family: Font.$font_family_roboto;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .Button_Field {
+    max-width: 380px;
+    width: 100%;
+    margin: 10px 0;
+    height: 40px;
+    display: flex;
+    position: relative;
+  }
+
+  .Panels_Container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .Image {
+    width: 100%;
+    transition: transform 1.1s ease-in-out;
+    transition-delay: 0.4s;
+  }
+
+  .Panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    text-align: center;
+    z-index: 6;
+
+    &.Left_Panel {
+      pointer-events: all;
+      padding: 3rem 17% 2rem 12%;
+    }
+
+    &.right-panel {
+      pointer-events: none;
+      padding: 3rem 12% 2rem 17%;
+    }
+
+    .Content {
+      color: #fff;
+      transition: transform 0.9s ease-in-out;
+      transition-delay: 0.6s;
+    }
+
+    h3 {
+      font-weight: 600;
+      line-height: 1;
+      font-size: 1.5rem;
+      font-family: Font.$font_family_roboto;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 0.95rem;
+      padding: 0.7rem 0;
+      font-family: Font.$font_family_roboto;
+      font-weight: 600;
+    }
+  }
+
+  .Button.Transparent {
+    margin: 0;
+    background: none;
+    border: 2px solid Color.$white;
+    width: 130px;
+    height: 41px;
+    font-size: 0.8rem;
+    border-radius: Format.$border_radius;
+    color: Color.$white;
+    cursor: pointer;
+    font-family: Font.$font_family_roboto;
+    font-weight: 600;
+  }
+
+  .right-panel {
+    .Image,
+    .Content {
+      transform: translateX(800px);
+    }
+  }
+
+  &.sign-up-mode {
+    &::before {
+      transform: translate(100%, -50%);
+      right: 52%;
+    }
+
+    .Left_Panel {
+      .Image,
+      .Content {
+        transform: translateX(-800px);
+      }
+      pointer-events: none;
+    }
+
+    .Signin_Signup {
+      left: 25%;
+
+      form.Sign_Up_Form {
+        opacity: 1;
+        z-index: 2;
+      }
+
+      form.Sign_In_Form {
+        opacity: 0;
+        z-index: 1;
+      }
+    }
+
+    .right-panel {
+      pointer-events: all;
+
+      .Image,
+      .Content {
+        transform: translateX(0%);
+      }
+    }
+  }
+}
+
+@media (max-width: 870px) {
+  .Auth {
+    min-height: 800px;
+    height: 100vh;
+
+    &:before {
+      width: 1500px;
+      height: 1500px;
+      transform: translateX(-50%);
+      left: 30%;
+      bottom: 68%;
+      right: initial;
+      top: initial;
+      transition: 2s ease-in-out;
+    }
+
+    &.sign-up-mode{
+
+      &:before {
+        transform: translate(-50%, 100%);
+        bottom: 32%;
+        right: initial;
+      }
+
+      .Signin_Signup {
+        top: 5%;
+        transform: translate(-50%, 0);
+      }
+
+      .Panels_Container{
+
+        .Left_Panel{
+
+          .Image,
+          .Content{
+            transform: translateY(-300px);
+          }
+        }
+
+        .right-panel{
+            
+            .Image,
+            .Content{
+              transform: translateY(0px);
+            }
+        }
+      }
+    }
+
+    .Signin_Signup {
+      width: 100%;
+      top: 95%;
+      left: 50% !important;
+      transform: translate(-50%, -100%);
+      transition: 1s 0.8s ease-in-out;
+    }
+
+    .Panels_Container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 2fr 1fr;
+
+      .Panel {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2.5rem 8%;
+        grid-column: 1 / 2;
+        
+        &.Left_Panel {
+          grid-row: 1 / 2;
+        }
+
+        &.right-panel {
+          grid-row: 3 / 4;
+        }
+
+        .Content {
+          padding-right: 15%;
+          transition: transform 0.9s ease-in-out;
+          transition-delay: 0.8s;
+
+          h3 {
+            font-size: 1.2rem;
+          }
+
+          p {
+            font-size: 0.7rem;
+            padding: 0.5rem 0;
+          }
+
+          .Button{
+
+            &.Transparent {
+              width: 110px;
+              height: 35px;
+              font-size: 0.7rem;
+            }
+          }
+        }
+
+        .Image {
+          width: 200px;
+          transition: transform 0.9s ease-in-out;
+          transition-delay: 0.6s;
+        }
+      }
+
+      .right-panel{
+
+        .Image,
+        .Content{
+          transform: translateY(200px);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 570px) {
+
+  .Auth{
+    padding: 0rem;
+    height: 100vh;
+
+    &::before{
+      bottom: 71%;
+      left: 50%;
+    }
+
+    &.sign-up-mode{
+
+      &:before {
+        bottom: 28%;
+        left: 50%;
+      }
+    }
+
+    .Panels_Container{
+
+      .Panel{
+
+        .Image{
+          display: none;
+        }
+
+        .Content{
+          padding: 0.4rem 1rem;
+        }
+      }
+    }
+  }
+}
+
+.Dark_Mode{
+
+  .Auth{
+    background-color: Color.$secundary_color_dark;
+
+    .Forms_Container{
+
+      .Signin_Signup{
+        
+        .Title{
+          color: Color.$white
+        }
+
+        .Check_Field{
+
+          div:nth-of-type(1){
+            
+            span{
+              color: Color.$gray;
+            }
+          }
+
+          div:nth-of-type(2){
+            
+            span{
+              color: Color.$gray;
+
+              &:hover{
+                color: Color.$yellow;
+                transition: 0.3s;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.Light_Mode{
+
+  .Auth{
+    background-color: Color.$secundary_color_light;
+
+    .Forms_Container{
+
+      .Signin_Signup{
+        
+        .Title{
+          color: Color.$black
+        }
+
+        .Check_Field{
+
+          div:nth-of-type(1){
+            
+            span{
+              color: Color.$black;
+            }
+          }
+
+          div:nth-of-type(2){
+            
+            span{
+              color: Color.$black;
+
+              &:hover{
+                color: Color.$orange;
+                transition: 0.3s;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

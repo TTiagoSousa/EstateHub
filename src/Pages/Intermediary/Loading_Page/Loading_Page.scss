@@ -1,0 +1,20 @@
+@use '../../../Styles/Colors.scss' as Color;
+@use '../../../Styles/Fonts.scss' as Font;
+@use '../../../Styles/Formats.scss' as Format;
+
+
+.Loading_Page{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+// Colors
+  .Dark_Mode .Loading_Page{
+    background-color: Color.$primary_color_dark;
+  }
+
+  .Light_Mode .Loading_Page{
+    background-color: Color.$primary_color_light;
+  }
+// Colors
