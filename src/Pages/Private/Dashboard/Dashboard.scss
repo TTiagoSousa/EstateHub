@@ -1,0 +1,9 @@
+@use '../../../Styles/Colors.scss' as Color;
+@use '../../../Styles/Fonts.scss' as Font;
+@use '../../../Styles/Formats.scss' as Format;
+
+.Dashboard{
+  width: 100%;
+  height: calc(95vh);
+  @include Format.Pages_Configs;
+}

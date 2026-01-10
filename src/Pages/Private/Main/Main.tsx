@@ -1,10 +1,15 @@
+import Private_Routes from '../../../Routes/Private_Routes';
 import './Main.scss';
 
 const Main = () => {
 
   return (
     <>
-      Teste
+      <div className='Intri'>
+        <div>
+          <Private_Routes />  
+        </div>
+      </div>
     </>
   )
 };
