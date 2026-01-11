@@ -36,7 +36,7 @@ export const useSignin = () => {
       });
 
       setTimeout(() => {
-        window.location.href = '/Main';
+        window.location.href = '/Dashboard';
       }, 300);
 
     } catch (error: any) {
