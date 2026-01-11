@@ -13,16 +13,14 @@ export const menuItems: MenuItem[] = [
     icon: '📊',
     path: '/Dashboard' 
   },
-  // {
-  //   id: 'projetos',
-  //   label: 'Projetos',
-  //   icon: '📁',
-  //   subItems: [
-  //     { id: 'projetos-ativos', label: 'Ativos', path: '/projetos/ativos' },
-  //     { id: 'projetos-arquivados', label: 'Arquivados', path: '/projetos/arquivados' },
-  //     { id: 'projetos-novos', label: 'Criar Novo', path: '/projetos/novo' },
-  //   ],
-  // },
+  {
+    id: 'projetos',
+    label: 'Trading',
+    icon: '📈',
+    subItems: [
+      { id: 'projetos-ativos', label: 'Dashboard', path: '/projetos/ativos' },
+    ],
+  },
   // {
   //   id: 'tarefas',
   //   label: 'Tarefas',
