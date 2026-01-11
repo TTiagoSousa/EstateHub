@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
 type AlertType = 'success' | 'error' | 'warning' | 'info';
 
@@ -8,9 +8,13 @@ interface Alert {
   type: AlertType | '';
 }
 
+type NavigationType = 'Sidebar_Home' | 'Top_Nav_Navigation' | 'Mobile_Menu';
+
 interface NavigationContextType {
   alert: Alert;
   setAlert: React.Dispatch<React.SetStateAction<Alert>>;
+  typeOfNavigation: NavigationType;
+  setTypeOfNavigation: (type: NavigationType) => void;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
@@ -26,8 +30,31 @@ export function NavigationProvider({ children }: NavigationProviderProps) {
     type: '',
   });
 
+  // Navigation type state
+  const [typeOfNavigation, setTypeOfNavigationState] = useState<NavigationType>(() => {
+    const saved = localStorage.getItem('sidebarPosition');
+    return (saved as NavigationType) || 'Sidebar_Home';
+  });
+
+  // Salvar no localStorage quando mudar
+  useEffect(() => {
+    localStorage.setItem('sidebarPosition', typeOfNavigation);
+  }, [typeOfNavigation]);
+
+  // Função para mudar o tipo de navegação
+  const setTypeOfNavigation = (type: NavigationType) => {
+    setTypeOfNavigationState(type);
+  };
+
   return (
-    <NavigationContext.Provider value={{ alert, setAlert }}>
+    <NavigationContext.Provider 
+      value={{ 
+        alert, 
+        setAlert, 
+        typeOfNavigation, 
+        setTypeOfNavigation 
+      }}
+    >
       {children}
     </NavigationContext.Provider>
   );

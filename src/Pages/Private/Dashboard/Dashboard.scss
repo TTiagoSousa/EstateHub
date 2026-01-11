@@ -3,7 +3,5 @@
 @use '../../../Styles/Formats.scss' as Format;
 
 .Dashboard{
-  width: 100%;
-  height: calc(95vh);
   @include Format.Pages_Configs;
 }

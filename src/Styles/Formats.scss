@@ -6,8 +6,11 @@ $border_radius: 5px;
 
 @mixin Pages_Configs{
   width: 100%;
-  min-height: 90.9vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100vh);
 }

@@ -1,0 +1,21 @@
+@use '../../../Styles/Colors.scss' as Color;
+
+.Intri {
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: right;
+  background-color: Color.$primary_color_dark;
+
+  .Container_Sidebar_Home {
+    width: calc(100% - 300px);
+    height: auto;
+    transition: 0.3s all;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    display: flex;
+    padding: 10px;
+  }
+}

@@ -4,7 +4,7 @@ const Dashboard = () => {
   
   return (
     <div className='Dashboard'>
-     ggfregergreg
+
     </div>
   )
 };
