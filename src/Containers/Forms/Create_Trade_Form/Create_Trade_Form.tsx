@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Create_Trade_Form.scss';
 import Simple_Input_And_Lable from '../../../Components/Inputs/Simple_Input_And_Lable/Simple_Input_And_Lable';
 import Global_Button from '../../../Components/Buttons/Global_Button/Global_Button';
 import * as Color from '../../../Styles/Colors';
 import Simple_Selector_And_Label from '../../../Components/Selectors/Simple_Selector_And_Label/Simple_Selector_And_Label';
-import { useCreateFuturesTrade } from '../../../Hooks/Trading/useCreateTrade';
+import { useCreateFuturesTrade } from '../../../Hooks/Trading/useCreateFuturesTrade';
 import { useCurrencies } from '../../../Hooks/Currency/useGetCurrencies';
 import { useGetSetups } from '../../../Hooks/Setups/useGetSetups'; 
 
@@ -20,7 +20,7 @@ export interface TradeFormData {
   price: number;
 }
 
-const Create_Trade_Form: React.FC<AddTradeFormProps> = ({ isOpen, onClose, onSubmit }) => {
+const Create_Trade_Form: React.FC<AddTradeFormProps> = ({ isOpen, onClose }) => {
   const { 
     symbol, setSymbol,
     direction, setDirection,
