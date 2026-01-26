@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavs } from "../Contexts/Navs_Context";
-import { useAuth } from "../Contexts/Auth_Context";
 import { End_Points } from "../Service/endPoints";
 import http from "../Service/httpService";
 

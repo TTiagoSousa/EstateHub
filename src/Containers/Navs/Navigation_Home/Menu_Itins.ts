@@ -18,7 +18,7 @@ export const menuItems: MenuItem[] = [
     label: 'Trading',
     icon: '📈',
     subItems: [
-      { id: 'projetos-ativos', label: 'Dashboard', path: '/projetos/ativos' },
+      { id: 'projetos-ativos', label: 'Dashboard', path: '/Trading_Dashboard' },
     ],
   },
   // {

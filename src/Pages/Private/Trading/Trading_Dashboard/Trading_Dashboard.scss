@@ -2,6 +2,24 @@
 @use '../../../../Styles/Fonts.scss' as Font;
 @use '../../../../Styles/Formats.scss' as Format;
 
-.Dashboard{
+.Trading_Dashboard{
   @include Format.Pages_Configs;
+
+  .Options{
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: Color.$secundary_color_dark;
+    border-radius: Format.$border_radius;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    .Button_Field{
+      width: 120px;
+      height: 30px;
+    }
+  }
 }

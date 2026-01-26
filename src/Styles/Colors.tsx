@@ -12,3 +12,5 @@ export const orange = '#ee783c';
 export const blue = "#3083f1";
 
 export const gray = "#9da9bb"
+
+export const whitte = "#ffffff"
