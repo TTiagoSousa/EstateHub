@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Create_Trade_Form.scss';
 import Simple_Input_And_Lable from '../../../Components/Inputs/Simple_Input_And_Lable/Simple_Input_And_Lable';
 import Global_Button from '../../../Components/Buttons/Global_Button/Global_Button';
@@ -32,12 +32,24 @@ const Create_Trade_Form: React.FC<AddTradeFormProps> = ({ isOpen, onClose }) => 
     commission, setCommission,
     entryDate, setEntryDate,
     exitDate, setExitDate,
-    notes, setNotes,
     createFuturesTrade
   } = useCreateFuturesTrade();
 
   const { currencies, loading } = useCurrencies();
   const { setups, loading: loadingSetups } = useGetSetups();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup - restaurar scroll ao desmontar
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const handleCreateClick = async () => {
     await createFuturesTrade();
