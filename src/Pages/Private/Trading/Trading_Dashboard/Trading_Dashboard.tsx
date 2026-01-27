@@ -2,6 +2,7 @@ import { lazy, Suspense, useState } from 'react';
 import Global_Button from '../../../../Components/Buttons/Global_Button/Global_Button';
 import './Trading_Dashboard.scss';
 const Create_Trade_Form = lazy(() => import('../../../../Containers/Forms/Create_Trade_Form/Create_Trade_Form'));
+import * as Color from '../../../../Styles/Colors';
 
 const Trading_Dashboard = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -20,9 +21,11 @@ const Trading_Dashboard = () => {
         <div className='Button_Field'>
           <Global_Button 
             text="Add new trade" 
-            backgroundColor="#ef4444"
-            textColor="#fff"
+            backgroundColor={Color.primary_color_dark}
+            textColor={Color.gray}
             onClick={handleOpenForm}
+            hoverDuration={0.5}
+            hoverTextColor={Color.whitte}
           />
         </div>
       </section>

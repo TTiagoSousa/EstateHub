@@ -8,6 +8,8 @@ interface GlobalButtonProps {
   to?: string;
   backgroundColor?: string;
   textColor?: string;
+  hoverTextColor?: string;
+  hoverDuration?: number;
   icon?: string | React.ReactNode;
   iconPosition?: 'left' | 'right';
   className?: string;
@@ -20,6 +22,8 @@ const Global_Button = ({
   to = '#',
   backgroundColor,
   textColor,
+  hoverTextColor,
+  hoverDuration = 0.2,
   icon,
   iconPosition = 'left',
   className = ''
@@ -28,6 +32,10 @@ const Global_Button = ({
   const buttonStyle: React.CSSProperties = {
     ...(backgroundColor && { backgroundColor }),
     ...(textColor && { color: textColor }),
+    ...(hoverDuration && { transition: `all ${hoverDuration}s ease` }),
+    ...(hoverTextColor && { 
+      '--hover-text-color': hoverTextColor 
+    } as React.CSSProperties),
   };
 
   const buttonContent = (
@@ -35,7 +43,7 @@ const Global_Button = ({
       disabled={disabled} 
       onClick={onClick}
       style={buttonStyle}
-      className={className}
+      className={`${className} ${hoverTextColor ? 'has-hover-color' : ''}`}
     >
       {icon && iconPosition === 'left' && (
         <span className="Button_Icon Icon_Left">

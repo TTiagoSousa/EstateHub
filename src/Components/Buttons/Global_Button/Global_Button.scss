@@ -27,10 +27,15 @@
     padding: 10px 10px;
     transition: all 0.2s ease;
     box-sizing: border-box;
-    border: 1px solid Color.$gray;
+    border: 1px solid rgb(70, 66, 66);
 
     &:hover:not(:disabled) {
       opacity: 0.9;
+    }
+
+    // ✅ Hover na cor do texto (se passado por prop)
+    &.has-hover-color:hover:not(:disabled) .Text {
+      color: var(--hover-text-color);
     }
 
     &:active:not(:disabled) {
@@ -45,6 +50,7 @@
     .Text {
       white-space: nowrap;
       font-family: Font.$font_family_roboto;
+      transition: inherit; 
     }
 
     .Button_Icon {
