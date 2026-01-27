@@ -14,15 +14,6 @@ const Trading_Dashboard = () => {
     setIsFormOpen(false);
   };
 
-  const handleSubmitTrade = (data: any) => {
-    console.log('Trade adicionado:', data);
-    // Aqui podes fazer o que quiseres com os dados:
-    // - Enviar para API
-    // - Guardar no estado global
-    // - Mostrar notificação de sucesso
-    // etc.
-  };
-
   return (
     <div className='Trading_Dashboard'>
       <section className='Options'>
@@ -42,7 +33,6 @@ const Trading_Dashboard = () => {
           <Create_Trade_Form
             isOpen={isFormOpen}
             onClose={handleCloseForm}
-            onSubmit={handleSubmitTrade}
           />
         </Suspense>
       )}

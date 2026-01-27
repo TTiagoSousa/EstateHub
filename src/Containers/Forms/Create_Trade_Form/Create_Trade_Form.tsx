@@ -11,13 +11,6 @@ import { useGetSetups } from '../../../Hooks/Setups/useGetSetups';
 interface AddTradeFormProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: TradeFormData) => void;
-}
-
-export interface TradeFormData {
-  symbol: string;
-  quantity: number;
-  price: number;
 }
 
 const Create_Trade_Form: React.FC<AddTradeFormProps> = ({ isOpen, onClose }) => {
@@ -45,7 +38,6 @@ const Create_Trade_Form: React.FC<AddTradeFormProps> = ({ isOpen, onClose }) => 
       document.body.style.overflow = 'unset';
     }
 
-    // Cleanup - restaurar scroll ao desmontar
     return () => {
       document.body.style.overflow = 'unset';
     };
