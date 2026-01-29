@@ -32,6 +32,12 @@ const Create_Trade_Form: React.FC<AddTradeFormProps> = ({ isOpen, onClose }) => 
   const { setups, loading: loadingSetups } = useGetSetups();
 
   useEffect(() => {
+    if (!currencyId) {
+      setCurrencyId('c5033d11-1e64-40c3-bf0d-ab9b10427f0e');
+    }
+  }, [currencyId, setCurrencyId]);
+
+  useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
