@@ -87,13 +87,11 @@ export const useCreateFuturesTrade = () => {
         currencyId,
         setupId,
         commission: parseFloat(commission),
-        entryDate: formatDateToISO(entryDate), // ✅ "2025-12-31T23:49:00.000Z"
-        exitDate: formatDateToISO(exitDate),   // ✅ "2026-01-26T23:49:00.000Z"
+        entryDate: formatDateToISO(entryDate),
+        exitDate: formatDateToISO(exitDate), 
         notes: notes || undefined,
         images: images || undefined,
       };
-
-      console.log('📤 Enviando para API:', tradeData);
 
       const response = await http.post(
         End_Points.Create_Futures_Trade_Endpoint(),

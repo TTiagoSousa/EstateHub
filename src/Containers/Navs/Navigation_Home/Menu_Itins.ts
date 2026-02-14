@@ -13,14 +13,6 @@ export const menuItems: MenuItem[] = [
     icon: '📊',
     path: '/Dashboard' 
   },
-  {
-    id: 'projetos',
-    label: 'Trading',
-    icon: '📈',
-    subItems: [
-      { id: 'projetos-ativos', label: 'Dashboard', path: '/Trading_Dashboard' },
-    ],
-  },
   // {
   //   id: 'tarefas',
   //   label: 'Tarefas',

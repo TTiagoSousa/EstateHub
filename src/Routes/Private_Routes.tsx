@@ -7,9 +7,6 @@ const Private_Routes = () => {
       <Routes>
         <Route index element={ <Private_Page.Dashboard /> }/>
         <Route path='Dashboard' element={ <Private_Page.Dashboard /> }/>
-        <Route path='Trading_Dashboard'>
-          <Route index element={ <Private_Page.Trading_Dashboard /> } />
-        </Route>
       </Routes>
     </>
   )
