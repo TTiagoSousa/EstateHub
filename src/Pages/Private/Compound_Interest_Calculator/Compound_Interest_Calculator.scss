@@ -1,0 +1,34 @@
+@use '../../../Styles/Colors.scss' as Color;
+@use '../../../Styles/Fonts.scss' as Font;
+@use '../../../Styles/Formats.scss' as Format;
+
+.Compound_Interest_Calculator{
+  @include Format.Pages_Configs;
+}
+
+.Compound_Interest_Calculator {
+
+  .Compound_Interest_Calculator_Form {
+    background-color: Color.$secundary_color_dark;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: Format.$border_radius;
+
+    form {
+      
+      .Form_Grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.25rem;
+
+        .Input_Field {
+          width: 100%;
+        }
+
+        .Button_Field {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

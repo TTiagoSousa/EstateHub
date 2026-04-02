@@ -13,16 +13,14 @@ export const menuItems: MenuItem[] = [
     icon: '📊',
     path: '/Dashboard' 
   },
-  // {
-  //   id: 'tarefas',
-  //   label: 'Tarefas',
-  //   icon: '✓',
-  //   subItems: [
-  //     { id: 'tarefas-pendentes', label: 'Pendentes', path: '/tarefas/pendentes' },
-  //     { id: 'tarefas-concluidas', label: 'Concluídas', path: '/tarefas/concluidas' },
-  //     { id: 'tarefas-prioritarias', label: 'Prioritárias', path: '/tarefas/prioritarias' },
-  //   ],
-  // },
+  {
+    id: 'tarefas',
+    label: 'Calculadoras',
+    icon: '🧮',
+    subItems: [
+      { id: 'tarefas-pendentes', label: 'Juros compostos', path: '/Compound_Interest_Calculator' },
+    ],
+  },
   // { 
   //   id: 'calendario', 
   //   label: 'Calendário', 

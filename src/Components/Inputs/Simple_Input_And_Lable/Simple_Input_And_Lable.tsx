@@ -1,134 +1,112 @@
-import { useState, forwardRef } from 'react';
+import { forwardRef, useState, useRef } from 'react';
 import './Simple_Input_And_Label.scss';
-import * as Color from '../../../Styles/Colors';
-import * as Icon from '../../../Imports/icons';
 
 interface SimpleInputAndLabelProps {
-  label_text?: string;
   value?: string | number;
   name?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'date' | 'time' | 'datetime-local';
-  disabled?: boolean;
-  required?: boolean;
-  min?: string | number;
-  max?: string | number;
-  step?: string | number;
-  maxLength?: number;
-  error?: string;
-  helperText?: string;
-  icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
-  size?: 'small' | 'medium' | 'large';
-  textAlign?: 'left' | 'center' | 'right';
+  showInfo?: boolean;
+  infoText?: string;
+}
+
+const TOOLTIP_WIDTH = 200;
+const TOOLTIP_ESTIMATED_HEIGHT = 50;
+const GAP = 10;
+const PADDING = 8;
+
+type TooltipPlacement = 'right' | 'left' | 'bottom';
+
+interface TooltipState {
+  top: number;
+  left: number;
+  placement: TooltipPlacement;
+  arrowOffset: number; // posição da seta perpendicular ao eixo do tooltip
 }
 
 const Simple_Input_And_Label = forwardRef<HTMLInputElement, SimpleInputAndLabelProps>(
-  (
-    {
-      label_text,
-      value,
-      name,
-      onChange,
-      onBlur,
-      placeholder,
-      type = 'text',
-      disabled = false,
-      required = false,
-      min,
-      max,
-      step,
-      maxLength,
-      error,
-      helperText,
-      icon,
-      iconPosition = 'left',
-      size = 'medium',
-      textAlign = 'center',
-    },
-    ref
-  ) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
+  ({ value, name, onChange, placeholder, type = 'text', showInfo = false, infoText }, ref) => {
+    const [tooltip, setTooltip] = useState<TooltipState | null>(null);
+    const infoRef = useRef<HTMLDivElement>(null);
 
-    const toggleShowPassword = () => {
-      setShowPassword(!showPassword);
+    const handleMouseEnter = () => {
+      if (!infoRef.current || !infoText) return;
+      const r = infoRef.current.getBoundingClientRect();
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      const btnCenterX = r.left + r.width / 2;
+      const btnCenterY = r.top + r.height / 2;
+
+      // --- Tenta RIGHT ---
+      if (r.right + GAP + TOOLTIP_WIDTH <= vw - PADDING) {
+        const left = r.right + GAP;
+        let top = btnCenterY - TOOLTIP_ESTIMATED_HEIGHT / 2;
+        top = Math.max(PADDING, Math.min(top, vh - TOOLTIP_ESTIMATED_HEIGHT - PADDING));
+        const arrowOffset = btnCenterY - top; // distância do topo do tooltip até à seta
+        return setTooltip({ top, left, placement: 'right', arrowOffset });
+      }
+
+      // --- Tenta LEFT ---
+      if (r.left - GAP - TOOLTIP_WIDTH >= PADDING) {
+        const left = r.left - GAP - TOOLTIP_WIDTH;
+        let top = btnCenterY - TOOLTIP_ESTIMATED_HEIGHT / 2;
+        top = Math.max(PADDING, Math.min(top, vh - TOOLTIP_ESTIMATED_HEIGHT - PADDING));
+        const arrowOffset = btnCenterY - top;
+        return setTooltip({ top, left, placement: 'left', arrowOffset });
+      }
+
+      // --- Fallback BOTTOM ---
+      const top = r.bottom + GAP;
+      let left = btnCenterX - TOOLTIP_WIDTH / 2;
+      left = Math.max(PADDING, Math.min(left, vw - TOOLTIP_WIDTH - PADDING));
+      const arrowOffset = btnCenterX - left; // distância da esquerda do tooltip até à seta
+      setTooltip({ top, left, placement: 'bottom', arrowOffset });
     };
 
-    const handleFocus = () => setIsFocused(true);
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-      setIsFocused(false);
-      onBlur?.(e);
-    };
+    const handleMouseLeave = () => setTooltip(null);
+
+    const arrowStyle = tooltip
+      ? tooltip.placement === 'bottom'
+        ? { '--arrow-pos': `${tooltip.arrowOffset}px`, '--arrow-axis': 'horizontal' } as React.CSSProperties
+        : { '--arrow-pos': `${tooltip.arrowOffset}px`, '--arrow-axis': 'vertical' } as React.CSSProperties
+      : {};
 
     return (
-      <div
-        className={`Simple_Input_And_Label 
-          ${error ? 'has_error' : ''} 
-          ${disabled ? 'is_disabled' : ''} 
-          ${isFocused ? 'is_focused' : ''}
-          ${icon ? `has_icon_${iconPosition}` : ''}
-          size_${size}
-        `}
-      >
-        {/* Label */}
-        {label_text && (
-          <label>
-            {label_text}
-            {required && <span className="required">*</span>}
-          </label>
+      <div className='Global_Input'>
+        <input
+          ref={ref}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+        {showInfo && (
+          <div
+            ref={infoRef}
+            className='Info'
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <span>?</span>
+          </div>
         )}
-
-        {/* Input Wrapper */}
-        <div className="Input_Wrapper">
-          {/* Icon Left */}
-          {icon && iconPosition === 'left' && (
-            <div className="Input_Icon Icon_Left">{icon}</div>
-          )}
-
-          {/* Input */}
-          <input
-            ref={ref}
-            name={name}
-            type={showPassword ? 'text' : type}
-            value={value}
-            onChange={onChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            placeholder={placeholder}
-            disabled={disabled}
-            required={required}
-            min={min}
-            max={max}
-            step={step}
-            maxLength={maxLength}
-            style={{ textAlign }}
-          />
-
-          {/* Password Toggle Icon */}
-          {type === 'password' && (
-            <div className="Input_Icon Icon_Password" onClick={toggleShowPassword}>
-              {showPassword ? (
-                <Icon.Close_Eye GlobalColor={Color.blue} />
-              ) : (
-                <Icon.Open_Eye GlobalColor={Color.blue} />
-              )}
-            </div>
-          )}
-
-          {/* Icon Right (não aparece se for password) */}
-          {icon && iconPosition === 'right' && type !== 'password' && (
-            <div className="Input_Icon Icon_Right">{icon}</div>
-          )}
-        </div>
-
-        {/* Error Message */}
-        {error && <span className="Error_Message">{error}</span>}
-
-        {/* Helper Text */}
-        {!error && helperText && <span className="Helper_Text">{helperText}</span>}
+        {infoText && tooltip && (
+          <div
+            className={`Info_Tooltip Info_Tooltip--${tooltip.placement}`}
+            style={{
+              position: 'fixed',
+              top: tooltip.top,
+              left: tooltip.left,
+              width: TOOLTIP_WIDTH,
+              ...arrowStyle,
+            }}
+          >
+            {infoText}
+          </div>
+        )}
       </div>
     );
   }

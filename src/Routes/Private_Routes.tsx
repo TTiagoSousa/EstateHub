@@ -7,6 +7,7 @@ const Private_Routes = () => {
       <Routes>
         <Route index element={ <Private_Page.Dashboard /> }/>
         <Route path='Dashboard' element={ <Private_Page.Dashboard /> }/>
+        <Route path='Compound_Interest_Calculator' element={ <Private_Page.Compound_Interest_Calculator /> }/>
       </Routes>
     </>
   )
